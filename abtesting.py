@@ -130,7 +130,7 @@ def get_expected_grid(observed_grid):
         for col in range(num_cols):
             row_sum = sum(observed_grid[row])
             col_sum = sum([r[col] for r in observed_grid])
-            total_sum = sum(sum(observed_grid, [])
+            total_sum = sum(sum(r) for r in observed_grid)
             row.append((row_sum*col_sum)/total_sum)
         exp.append(row)
     return exp
@@ -183,14 +183,14 @@ def data_to_num_list(s):
     '''
   return list(map(float, s.split()))
 
-
+"""
 # t_test 1:
 a_t1_list = data_to_num_list(a1)
 b_t1_list = data_to_num_list(b1)
 print(get_t_score(a_t1_list, b_t1_list)) # this should be -129.500
 print(perform_2_sample_t_test(a_t1_list, b_t1_list)) # this should be 0.0000
 # why do you think this is? Take a peek at a1 and b1 in abtesting_test.py :)
-
+"""
 # t_test 2:
 a_t2_list = data_to_num_list(a2)
 b_t2_list = data_to_num_list(b2)
