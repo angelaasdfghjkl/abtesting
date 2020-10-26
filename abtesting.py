@@ -126,13 +126,13 @@ def get_expected_grid(observed_grid):
     num_rows = len(observed_grid)
     num_cols = len(observed_grid[0])
     for row in range(num_rows):
-        row= []
+        r= []
         for col in range(num_cols):
             row_sum = sum(observed_grid[row])
-            col_sum = sum([r[col] for r in observed_grid])
-            total_sum = sum(sum(r) for r in observed_grid)
-            row.append((row_sum*col_sum)/total_sum)
-        exp.append(row)
+            col_sum = sum([row[col] for row in observed_grid])
+            total_sum = sum(sum(row) for row in observed_grid)
+            r.append((row_sum*col_sum)/total_sum)
+        exp.append(r)
     return exp
 
 def df_chi2(observed_grid):
@@ -152,8 +152,9 @@ def chi2_value(observed_grid):
     '''
     #TODO: fill me in!
     sum = 0
+    expected_grid = get_expected_grid(observed_grid)
     for row in range(len(observed_grid)):
-        for col in range(observed_grid[0]):
+        for col in range(len(observed_grid[0])):
             observed = observed_grid[row][col]
             expected = expected_grid[row][col]
             sum += ((observed - expected)**2)/expected
